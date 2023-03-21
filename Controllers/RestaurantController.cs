@@ -140,6 +140,18 @@ namespace ZeroHunger.Controllers
             }
         }
 
+        public ActionResult completData()
+        {
+            using (var db = new ZeroHungerEntities())
+            {
+                var restaurant = db.Restaurants
+                                .Include(r => r.CollectRequests)
+                                .ToList();
+
+                return View(restaurant);
+            }
+        }
+
         public ActionResult Edit(int ID)
         {
             using (var db = new ZeroHungerEntities())

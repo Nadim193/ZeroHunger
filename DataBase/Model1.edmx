@@ -33,6 +33,7 @@
           <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="RequestType" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="NGOs">
           <Key>
@@ -163,6 +164,7 @@
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CollectRequest" Relationship="Self.FK_FoodDistributions_CollectRequests" FromRole="FoodDistributions" ToRole="CollectRequests" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_FoodDistributions_Employees" FromRole="FoodDistributions" ToRole="Employees" />
+          <Property Name="RequestType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="NGO">
           <Key>
@@ -285,6 +287,7 @@
           <EntitySetMapping Name="FoodDistributions">
             <EntityTypeMapping TypeName="ZeroHungerModel.FoodDistribution">
               <MappingFragment StoreEntitySet="FoodDistributions">
+                <ScalarProperty Name="RequestType" ColumnName="RequestType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CollectRequestID" ColumnName="CollectRequestID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />

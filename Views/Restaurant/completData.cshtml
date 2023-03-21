@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Dashboard.cshtml";
 }
 
-<h2>Reject Request</h2>
+<h2>Completed Request</h2>
 
 @if (Model != null)
 {
@@ -15,7 +15,6 @@
                 <th>Preservation Time</th>
                 <th>Collection Date</th>
                 <th>Status</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -23,16 +22,13 @@
             {
                 foreach (var collectRequest in restaurant.CollectRequests)
                 {
-                    if (collectRequest.Status == "Reject")
+                    if (collectRequest.Status == "Complete")
                     {
                         <tr>
                             <td>@restaurant.Name</td>
                             <td>@collectRequest.PreservationTime</td>
                             <td>@collectRequest.CollectionDate</td>
                             <td>@collectRequest.Status</td>
-                            <td>
-                                <a href="/Restaurant/Accpect/@collectRequest.ID"><button class="btn btn-success" type="submit">Accpect</button></a>
-                            </td>
                         </tr>
                     }
                 }

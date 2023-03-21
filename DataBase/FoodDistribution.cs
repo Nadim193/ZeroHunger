@@ -19,6 +19,7 @@ namespace ZeroHunger.DataBase
         public int EmployeeID { get; set; }
         public System.DateTime Date { get; set; }
         public int Quantity { get; set; }
+        public string RequestType { get; set; }
     
         public virtual CollectRequest CollectRequest { get; set; }
         public virtual Employee Employee { get; set; }

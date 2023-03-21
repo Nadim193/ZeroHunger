@@ -131,28 +131,5 @@ namespace ZeroHunger.Controllers
 
             return RedirectToAction("Assign");
         }
-
-        public ActionResult Complete(int id)
-        {
-            using (var db = new ZeroHungerEntities())
-            {
-                var request = db.CollectRequests.Find(id);
-
-                if (request != null)
-                {
-                    request.Status = "Complete";
-                    db.Entry(request).State = EntityState.Modified;
-                    db.SaveChanges();
-
-                    TempData["msg"] = "Request marked as completed successfully!";
-                }
-                else
-                {
-                    TempData["error"] = "Invalid request!";
-                }
-            }
-
-            return RedirectToAction("Index", "CollectRequest");
-        }
     }
 }

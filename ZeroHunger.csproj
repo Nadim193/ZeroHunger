@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\FoodDistributionController.cs" />
     <Compile Include="Controllers\NGOController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="DataBase\CollectRequest.cs">
@@ -230,6 +231,8 @@
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Restaurant\AccpectData.cshtml" />
     <Content Include="Views\Restaurant\RejectData.cshtml" />
+    <Content Include="Views\FoodDistribution\Index.cshtml" />
+    <Content Include="Views\Restaurant\completData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
