@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+@model List<ZeroHunger.DataBase.Restaurant>
+
+<h2>Collect Requests</h2>
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-success">@TempData["msg"]</div>
+}
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger">@TempData["error"]</div>
+}
+
+<br />
+<a href="/Restaurant/AccpectData/"><button class="btn btn-primary" type="submit">Accpected Request</button></a>
+<a href="/Restaurant/RejectData/"><button class="btn btn-primary" type="submit">Rejected Request</button></a>
+<br />
+<br />
+
+@if (Model != null)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Restaurant Name</th>
+                <th>Preservation Time</th>
+                <th>Collection Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var restaurant in Model)
+            {
+                foreach (var collectRequest in restaurant.CollectRequests)
+                {
+                    <tr>
+                        <td>@restaurant.Name</td>
+                        <td>@collectRequest.PreservationTime</td>
+                        <td>@collectRequest.CollectionDate.DayOfWeek</td>
+                        <td>@collectRequest.Status</td>
+
+                        <td>
+                            <a href="/Restaurant/Accpect/@collectRequest.ID"><button class="btn btn-success" type="submit">Accpect</button></a>
+                            <a href="/Restaurant/Reject/@collectRequest.ID"><button class="btn btn-danger" type="submit">Reject</button></a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Request found.</p>
+}
