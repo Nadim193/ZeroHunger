@@ -93,15 +93,17 @@ namespace ZeroHunger.Controllers
         {
             using (var db = new ZeroHungerEntities())
             {
-                var requests = db.CollectRequests.Where(r => r.EmployeeId == null)
-                    .Where(s => s.Status == "Accpect").ToList();
+                var restaurant = db.Restaurants.ToList();
+
+                var requests = db.CollectRequests.Where(r => r.EmployeeId == null).ToList();
+
                 var employees = db.Employees.ToList();
 
 
                 ViewBag.Requests = requests;
                 ViewBag.Employees = employees;
 
-                return View();
+                return View(restaurant);
             }
         }
 

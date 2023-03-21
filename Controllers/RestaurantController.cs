@@ -42,12 +42,12 @@ namespace ZeroHunger.Controllers
         {
             using (var db = new ZeroHungerEntities())
             {
-                var restaurant = db.Restaurants
+                var restaurants = db.Restaurants
                                 .Include(r => r.CollectRequests)
-                                .Where(r => r.CollectRequests.Any(cr => cr.Status == "Pending"))
                                 .ToList();
-                
-                return View(restaurant);
+
+                return View(restaurants);
+
             }
         }
 
@@ -119,14 +119,10 @@ namespace ZeroHunger.Controllers
             {
                 var restaurant = db.Restaurants
                                 .Include(r => r.CollectRequests)
-                                .Where(r => r.CollectRequests.Any(cr => cr.Status == "Accpect"))
                                 .ToList();
 
-                var employee = db.Employees
-                                .Include(c => c.CollectRequests)
-                                .ToList();
-
-                ViewBag.name = employee;
+                var employees = db.Employees.ToList();
+                ViewBag.Employees = employees;
 
                 return View(restaurant);
             }
@@ -138,7 +134,6 @@ namespace ZeroHunger.Controllers
             {
                 var restaurant = db.Restaurants
                                 .Include(r => r.CollectRequests)
-                                .Where(r => r.CollectRequests.Any(cr => cr.Status == "Reject"))
                                 .ToList();
 
                 return View(restaurant);

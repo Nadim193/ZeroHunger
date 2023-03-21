@@ -21,9 +21,16 @@
         <label for="requestId">Request:</label>
         <select id="requestId" name="requestId" class="form-control">
             <option value="">Select a request</option>
-            @foreach (var request in ViewBag.Requests)
+            @foreach (var restaurants in Model)
             {
-                <option value="@request.ID">@request.RestaurantID</option>
+                foreach (var request in ViewBag.Requests)
+                {
+                    if (request.Status == "Accpect" && restaurants.ID == request.RestaurantID)
+                    {
+                        <option value="@request.ID">@restaurants.Name</option>
+
+                    }
+                }
             }
         </select>
     </div>

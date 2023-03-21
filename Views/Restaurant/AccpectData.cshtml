@@ -23,19 +23,27 @@
             {
                 foreach (var collectRequest in restaurant.CollectRequests)
                 {
-                    foreach (var employee in ViewBag.name)
+                    if (collectRequest.Status == "Accpect")
                     {
                         <tr>
                             <td>@restaurant.Name</td>
                             <td>@collectRequest.PreservationTime</td>
                             <td>@collectRequest.CollectionDate.DayOfWeek</td>
                             <td>@collectRequest.Status</td>
-                            <td>@employee.Name</td>
+                            <td>
+                                @foreach (var employee in ViewBag.Employees)
+                                {
+                                    if (employee.ID == collectRequest.EmployeeId)
+                                    {
+                                        @employee.Name
+                                    }
+                                }
+                            </td>
                         </tr>
-
                     }
                 }
             }
+
         </tbody>
     </table>
 }
