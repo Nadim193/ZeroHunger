@@ -45,6 +45,9 @@ namespace ZeroHunger.Controllers
                 var restaurants = db.Restaurants
                                 .Include(r => r.CollectRequests)
                                 .ToList();
+                var name = db.Restaurants.ToList();
+
+                ViewBag.Name = name;
 
                 return View(restaurants);
 
@@ -52,14 +55,18 @@ namespace ZeroHunger.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CollectRequest request)
+        public ActionResult Create(CollectRequest request, int RestaurantID)
         {
             if (ModelState.IsValid)
             {
                 using (var db = new ZeroHungerEntities())
                 {
+                    request.RestaurantID = RestaurantID;
+                    request.EmployeeId = null;
+                    request.Status = "Pending";
                     db.CollectRequests.Add(request);
                     db.SaveChanges();
+                    TempData["msg"] = "Request Successfull";
                     return RedirectToAction("Create");
                 }
             }
